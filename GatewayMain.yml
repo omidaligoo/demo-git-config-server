@@ -1,0 +1,97 @@
+server:
+  servlet:
+    session:
+      timeout: 600000
+      cookie:
+        name: UISESSION
+  compression:
+    enabled: true
+    mime-types: text/html, text/xml, text/plain, text/css, application/javascript, application/json, image/svg+xml
+    min-response-size: 1024
+spring:
+  application:
+    name: GatewayMain
+  profiles:
+    active:
+    - test
+  servlet:
+    multipart:
+      max-file-size: 102400KB
+      max-request-size: 102400KB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8021/eureka
+    enabled: true
+    healthcheck:
+      enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    metadata-map:
+      zone: primary # This is needed for the load balancer
+ribbon:
+  ReadTimeout: 100000000
+  eureka:
+    enabled: true
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 60000000
+        readTimeout: 60000000
+hystrix:
+  metrics:
+    enabled: true
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000000
+zuul:
+  sensitive-headers: Cookie,Set-Cookie
+  ignoredHeaders:
+     - authorization
+  host:
+    connect-timeout-millis: 60000000
+    socket-timeout-millis: 60000000
+    time-to-live: 60000000
+  routes:
+    AuthServer:
+      path: /auth-service/**
+      url: http://auth-server:8080/
+    Core:
+      path: /core/**
+      url: http://core:8080/
+    InternetGateway:
+      path: /internet-gateway/**
+      url: http://internet-gateway:8080/
+    Payment:
+      path: /payment/**
+      service-id: http://payment:8080/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+logging:
+  path: log
+  file: 
+    max-size: 5MB
+    max-history: 100
+jwt:
+  token:
+    header-name: Authorization
+

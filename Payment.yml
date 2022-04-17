@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: Payment
+  profiles:
+    active:
+    - test
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true 
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: jdbc:postgresql://16.170.133.216:8004/payment
+    username: postgres
+    password: somePassword 
+  database:
+    driverClassName: org.postgresql.Driver
+  cloud:
+    compatibility-verifier:
+       enabled: true
+ribbon:
+  ReadTimeout: 100000000
+  eureka:
+    enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8021/eureka
+    enabled: true
+    healthcheck:
+      enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    metadata-map:
+      zone: primary # This is needed for the load balancer
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 60000000
+        readTimeout: 60000000
+logging:
+  path: log
+  file: 
+    max-size: 5MB
+jwt:
+  token:
+    header-name: Authorization
+    max-history: 100
+
+

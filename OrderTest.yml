@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: AuthServer
+  profiles:
+    active:
+    - test
+  data:
+    mongodb:
+      uri: mongodb://13.53.140.109/Order
+  cloud:
+    compatibility-verifier:
+       enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8021/eureka
+    enabled: true
+    healthcheck:
+      enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    metadata-map:
+      zone: primary # This is needed for the load balancer
+ribbon:
+  ReadTimeout: 100000000
+  eureka:
+    enabled: true
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 60000000
+        readTimeout: 60000000
+logging:
+  path: log
+  file: 
+    max-size: 5MB
+jwt:
+  token:
+    header-name: Authorization
+    max-history: 100
+
+
