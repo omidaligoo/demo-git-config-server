@@ -17,7 +17,7 @@ spring:
   datasource:
     url: jdbc:postgresql://13.53.140.109:8004/internetGateway
     username: postgres
-    password: somePassword 
+    password: mysecretpassword 
   database:
     driverClassName: org.postgresql.Driver
   cloud:
