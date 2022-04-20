@@ -47,4 +47,5 @@ jwt:
     header-name: Authorization
     max-history: 100
     access-token-validity-seconds: 800000
+    support-refresh-token: true
 
