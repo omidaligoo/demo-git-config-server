@@ -6,7 +6,7 @@ spring:
     - test
   data:
     mongodb:
-      uri: mongodb://mongo:latest:27017/Order
+      uri: mongodb://example-mongo:8011/Order
   cloud:
     compatibility-verifier:
        enabled: true
