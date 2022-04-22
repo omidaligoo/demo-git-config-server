@@ -76,8 +76,9 @@ zuul:
     Payment:
       path: /payment/**
       service-id: http://payment:8080/
-
-
+    OrderTest:
+      path: /order-test/**
+      service-id: http://order-test:8080/
 management:
   endpoints:
     web:
