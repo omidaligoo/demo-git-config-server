@@ -15,7 +15,7 @@ spring:
           use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
   datasource:
-    url: jdbc:postgresql://13.53.140.109:8004/uaa
+    url: jdbc:postgresql://demo.persifund.com:8004/uaa
     username: postgres
     password: mysecretpassword 
   database:
